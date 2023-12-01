@@ -13,3 +13,8 @@ Helpful resources:
 - https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Texts
 - - svg text offers various properties similar to css! (font family, weight, color, etc)
 
+# Credits
+- I did this assignment with my brother Furk and our Tutor Strawhat!
+- I'd like to thank some of my classmates for guidance
+- I'd also like to thank xpert learning assistant
+
