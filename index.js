@@ -11,7 +11,7 @@ const fs = require('fs');
 const SVG = require("./svg");
 
 // we should setup other js files for class constructors of shapes, then require those
-import { ClassName } from './lib/shapes';
+const shapes = require("./shapes");
 
 // we will prompt user with inquirer to answer questions based on how they want their logo (color, shape, text,)
 // and if we have time maybe text properties, like font family, weight, color, etc
