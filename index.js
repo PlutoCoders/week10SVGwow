@@ -7,6 +7,8 @@ const fs = require('fs');
 // we will need to require inquirer 
 // we will need to rquire fs (already built in)
 // const fs = require('fs');
+// Bring in the different modular js files
+const SVG = require("./svg");
 
 // we should setup other js files for class constructors of shapes, then require those
 import { ClassName } from './lib/shapes';
