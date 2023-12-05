@@ -4,28 +4,51 @@ const inquirer = require("inquirer");
 // Open the in-editor Terminal in VS Code (ctrl-`) and type yarn jest-w (or npm run jest-w )
 
 const fs = require('fs');
-// we will need to require inquirer 
-// we will need to rquire fs (already built in)
-// const fs = require('fs');
-// Bring in the different modular js files
-const SVG = require("./svg");
 
-// we should setup other js files for class constructors of shapes, then require those
-const shapes = require("./shapes");
+// Bring in the different modular js files
+const SVG = require("./lib/svg");
+
+// requiring the classes created for the different shapes
+const {Circle, Triangle, Square} = require("./lib/shapes");
 
 // we will prompt user with inquirer to answer questions based on how they want their logo (color, shape, text,)
 // and if we have time maybe text properties, like font family, weight, color, etc
 // make sure the user doesn't enter too many characters for the text, as it could cause issues with the logo (if statement)
+
+// Note: we are declaring a function here, but this function will have to later be called, otherwise the user won't get prompted
 function promptUser() {
     inquirer
     .prompt([
       // first prompt
       {
+        name: "text",
         type: "input",
         message:
-          "Enter <= 3 characters for your logo text.",
-        name: "text",
+          "Choose up to 3 letters for your Logo)",
+        validate: (text) =>
+          text.length <= 3 ||
+          "No more than 3 letters!",
       },
+      {
+        name: "textColor",
+        type: "input",
+        message: "Choose your Text Color!",
+      },
+      {
+        name: "shapeType",
+        type: "list",
+        message: "Choose your shape!",
+        choices: ["circle", "triangle", "square"],
+      },
+      {
+        name: "shapeColor",
+        type: "input",
+        message: "Choose your shape color",
+      },
+      // With this user input, we need to destructure the answers so that we can use them and manipulate them into new instances of svg class designs
+      // then we will set the attributes (color, type, etc)
+      // then we will generate these logos using svg.render()
+      // next we will have to write the file writefile() and choose where it is written to (like a specific folder such as examples)
     ])
 };
 // after this, we will chain .then (what will we do with our response, or what potential issues we need to check for before writing)
