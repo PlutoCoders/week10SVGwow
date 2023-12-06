@@ -6,7 +6,14 @@ In this assignment we are instructed to make a node.js command-line application 
 As the app is initated, users will be instructed to a color, shape, and text to make their logo design.
 
 ## How to Run the app
-You can run this application by going into the terminal command line of the main file, and typing: node index.js, which will biegin the prompts.
+You can run this application by going into the terminal command line of the main file, and type: node index.js, which will begin the prompts.
+
+## Repo Structure
+The repo is structured in this manner:
+- index.js is where we run the application code
+- library contains the various javascript files for shape constructor classes and the svg setup
+- examples contains the finished output product after the user succesfully finishes all the prompts
+- You can ignore assets, node modules, package.json, etc
 
 Helpful resources:
 - https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes
