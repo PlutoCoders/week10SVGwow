@@ -17,7 +17,8 @@ const {Circle, Triangle, Square} = require("./lib/shapes");
 // and if we have time maybe text properties, like font family, weight, color, etc
 // make sure the user doesn't enter too many characters for the text, as it could cause issues with the logo (if statement)
 
-// We need to bring in f
+// We also need to bring in the path to the output folder as a variable which will be called later on when we render/export the logo
+const path = require('./examples');
 
 // Note: we are declaring a function here, but this function will have to later be called, otherwise the user won't get prompted
 function promptUser() {
@@ -72,7 +73,21 @@ function promptUser() {
       const svg = new SVG();
       svg.setText(text, textColor);
       svg.setShape(shape);
-});
+
+      // Now we need to do something with this finalized product, such as rendering it and putting it somewhere
+      // __dirname is the absolute path of the directory we are working in, which helps us create the path based on the current location of this file
+      // path.join is a node.js method that allows us to 
+      const outputPath = path.join(__dirname, 'output', 'logo.svg');
+      return writeFile(outputPath, svg.render());
+    })
+    .then(() => {
+      console.log("Generated logo.svg in the 'output' folder");
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log("Oops! Something went wrong.");
+    });
+  };
 // after this, we will chain .then (what will we do with our response, or what potential issues we need to check for before writing)
 
 
