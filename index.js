@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 // Note: when importing fs like this, you bring in the entire node.js fs module, which allows you to use all of its methods.
 // Since we are only using the fs write method, how can we import only the write method
 // The benefits of only bringing in exactly what you need: Keeps codebase clean, reduces overhead (additional/extra work for a program to perform), and makes it clear what actual functionality your code is utilizing.
-const fs = require('fs');
+const { writeFile } = require('fs').promises;
 
 // Bring in the different modular js files
 const SVG = require("./lib/svg");
@@ -18,7 +18,8 @@ const {Circle, Triangle, Square} = require("./lib/shapes");
 // make sure the user doesn't enter too many characters for the text, as it could cause issues with the logo (if statement)
 
 // We also need to bring in the path to the output folder as a variable which will be called later on when we render/export the logo
-const path = require('./examples');
+// Note for why there were errors: path is a built-in Node.js module and doesn't require a specific file path to be imported. Just use 'path'.
+const path = require('path');
 
 // Note: we are declaring a function here, but this function will have to later be called, otherwise the user won't get prompted
 function promptUser() {
@@ -77,17 +78,20 @@ function promptUser() {
       // Now we need to do something with this finalized product, such as rendering it and putting it somewhere
       // __dirname is the absolute path of the directory we are working in, which helps us create the path based on the current location of this file
       // path.join is a node.js method that allows us to 
-      const outputPath = path.join(__dirname, 'output', 'logo.svg');
+      const outputPath = path.join(__dirname, 'examples', 'logo.svg');
       return writeFile(outputPath, svg.render());
     })
     .then(() => {
-      console.log("Generated logo.svg in the 'output' folder");
+      console.log("Generated logo.svg in the 'examples' folder");
     })
     .catch((error) => {
       console.log(error);
       console.log("Oops! Something went wrong.");
     });
   };
+
+// Finally, call the function
+  promptUser();
 // after this, we will chain .then (what will we do with our response, or what potential issues we need to check for before writing)
 
 
